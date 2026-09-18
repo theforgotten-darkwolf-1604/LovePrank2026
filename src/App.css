@@ -5,7 +5,7 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .app {
@@ -147,3 +147,4 @@ textarea::placeholder {
     padding: 35px 20px;
   }
 }
+
