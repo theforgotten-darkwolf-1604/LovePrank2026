@@ -7,16 +7,33 @@ export default function App() {
   const [noStyle, setNoStyle] = useState({});
   const [tries, setTries] = useState(0);
 
-  const dodge = () => {
-    const w = 120;
-    const h = 55;
-    const x = Math.random() * Math.max(1, window.innerWidth - w - 20) + 10;
-    const y = Math.random() * Math.max(1, window.innerHeight - h - 20) + 10;
+  const dodge = (event) => {
+    const button = event?.currentTarget;
+    const rect = button?.getBoundingClientRect();
+
+    const buttonWidth = rect?.width || 120;
+    const buttonHeight = rect?.height || 55;
+
+    const padding = 12;
+
+    const maxX = Math.max(
+      padding,
+      window.innerWidth - buttonWidth - padding
+    );
+
+    const maxY = Math.max(
+      padding,
+      window.innerHeight - buttonHeight - padding
+    );
+
+    const x = padding + Math.random() * Math.max(0, maxX - padding);
+    const y = padding + Math.random() * Math.max(0, maxY - padding);
 
     setNoStyle({
       position: "fixed",
-      left: `${x}px`,
-      top: `${y}px`
+      left: `${Math.round(x)}px`,
+      top: `${Math.round(y)}px`,
+      zIndex: 9999
     });
 
     setTries((n) => n + 1);
@@ -92,3 +109,4 @@ export default function App() {
     </main>
   );
 }
+
